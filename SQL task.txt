@@ -1,0 +1,125 @@
+SELECT title FROM movies;
+SELECT director FROM movies;
+SELECT title,director FROM movies;
+SELECT title,year FROM movies;
+SELECT * FROM movies;
+SELECT*  FROM movies WHERE id=6;
+SELECT*  FROM movies WHERE year BETWEEN 2000 AND 2010;
+SELECT*  FROM movies WHERE year NOT BETWEEN 2000 AND 2010;
+SELECT*  FROM movies WHERE year LIMIT 5;
+SELECT * FROM movies WHERE Title  LIKE "Toy Story%" ;
+SELECT * FROM movies WHERE Director  LIKE "John Lasseter%" ;
+SELECT * FROM movies WHERE Director   NOT LIKE "John Lasseter%" ;
+SELECT * FROM movies WHERE Title    LIKE "WALL-%" ;
+SELECT DISTINCT director FROM movies ORDER BY director;
+SELECT DISTINCT title FROM movies ORDER BY year DESC LIMIT 4;
+SELECT DISTINCT  title FROM movies ORDER BY title LIMIT 5;
+SELECT * FROM movies ORDER BY title  limit 5 OFFSET 5;
+SELECT city,population  FROM north_american_cities where country ="Canada";
+SELECT city,population  FROM north_american_cities where country ="United States"ORDER BY latitude desc;
+SELECT * FROM north_american_cities where longitude < -87.629798 order by longitude;
+SELECT * FROM north_american_cities where country="Mexico"order by population  desc LIMIT 2
+SELECT * FROM north_american_cities where country="United States"order by population  desc limit  2 offset 2;
+SELECT * FROM movies inner join Boxoffice on Movies.id =Boxoffice.Movie_id;
+SELECT * FROM movies inner join Boxoffice on Movies.id =Boxoffice.Movie_id where  International_sales >Domestic_sales;
+SELECT * FROM movies inner join Boxoffice on Movies.id =Boxoffice.Movie_id order by Rating  desc;
+SELECT  DISTINCT Building FROM employees;
+SELECT * FROM Buildings;
+SELECT DISTINCT Building_name,Role FROM Buildings left join employees on Building_name =building;
+SELECT Role,Name FROM employees where Building is NULL;
+SELECT * FROM Buildings left join employees on Building_name=Building where role is null;
+SELECT DISTINCT  title ,(domestic_sales + international_sales) / 1000000  sales FROM movies INNER JOIN boxoffice ON movies.id = boxoffice.movie_id;
+SELECT DISTINCT title, (rating * 10)  percentFROM moviesINNER JOIN boxofficeON id = movie_id;
+SELECT DISTINCT  title FROM movies LEFT JOIN boxoffice  ON id = movie_id where (year%2=0);
+SELECT MAX(Years_employed) FROM employees   ;
+SELECT role,AVG(Years_employed) FROM employees group BY role;
+SELECT SUM(Years_employed) ,Building FROM employees group by Building;
+SELECT COUNT(Role) FROM employees WHERE Role="Artist";
+SELECT COUNT(Role),Role FROM employees group by Role;
+SELECT SUM(Years_employed) FROM employeesWHERE Role="Engineer";
+SELECT COUNT( Director),director FROM movies group by director;
+SELECT  SUM(Domestic_sales+International_sales) ,director FROM movies left join Boxoffice on id=movie_id group by director ;
+
+
+INSERT INTO movies (id, title, director, year, length_minutes) VALUES (15, "Toy Story 4", "John", 2017, 90 );
+INSERT INTO BoxOffice (Movie_id,Rating,Domestic_Sales,International_Sales) VALUES(15,8.7,340*000000,270*000000);
+
+
+
+UPDATE Movies SET Director = "John Lasseter" WHERE Id = 2;
+UPDATE Movies SET Year =1999 where id=3;
+UPDATE Movies SET Director="Lee Unkrich", Title="Toy Story 3" WHERE id =11;
+
+
+
+DELETE FROM  Movies WHERE Year < 2005;
+DELETE FROM Movies WHERE Director="Andrew Stanton";
+
+
+
+
+CREATE TABLE Database (
+    id INTEGER PRIMARY KEY,
+    Name TEXT,
+    Version INTEGER,
+    Download_count INTEGER 
+    
+);
+
+
+
+ALTER TABLE Movies ADD Aspect_ratio FLOAT  ;
+ALTER  TABLE Movies ADD  Language TEXT DEFAULT "English";
+
+
+
+DROP TABLE IF EXISTS Movies;
+DROP TABLE IF EXISTS BoxOffice;
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
